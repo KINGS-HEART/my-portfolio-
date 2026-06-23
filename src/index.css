@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Focus-visible styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid rgba(124, 58, 237, 0.8);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Dark theme — permanent (per-section colors override via scroll) */
+  :root {
+    --bg-page: #0A0A1A;
+    --bg-card: #0F0F2D;
+    --bg-surface: #1A1A3E;
+    --bg-elevated: #1E1E3F;
+    --bg-hover: #2A2A4F;
+    --fg-primary: #ffffff;
+    --fg-secondary: #d1d5db;
+    --fg-muted: #9ca3af;
+    --fg-dim: #6b7280;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg-medium: rgba(255, 255, 255, 0.08);
+    --glass-bg-strong: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-border-strong: rgba(255, 255, 255, 0.15);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+    --scrollbar-track: #0A0A1A;
+    --scrollbar-thumb: rgba(124, 58, 237, 0.4);
+    --gradient-orb-1: rgba(124, 58, 237, 0.08);
+    --gradient-orb-2: rgba(6, 182, 212, 0.06);
+    --gradient-orb-3: rgba(236, 72, 153, 0.04);
+  }
+
+  html {
+    /* Lenis handles smooth scrolling */
+  }
+
+  body {
+    background: var(--bg-page);
+    color: var(--fg-primary);
+  }
+
+  /* Ambient glow backgrounds per section — pure CSS, works everywhere */
+  .glow-hero {
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 40%, rgba(124, 58, 237, 0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 60% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-about {
+    background:
+      radial-gradient(ellipse 50% 50% at 10% 50%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 90% 30%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-skills {
+    background:
+      radial-gradient(ellipse 50% 50% at 80% 40%, rgba(236, 72, 153, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 60%, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-projects {
+    background:
+      radial-gradient(ellipse 60% 50% at 30% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 70% 70%, rgba(124, 58, 237, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(236, 72, 153, 0.06) 0%, transparent 70%);
+  }
+
+  .glow-experience {
+    background:
+      radial-gradient(ellipse 50% 50% at 70% 40%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 20% 70%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-blog {
+    background:
+      radial-gradient(ellipse 50% 50% at 80% 30%, rgba(236, 72, 153, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  }
+
+  .glow-testimonials {
+    background:
+      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(124, 58, 237, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 90% 20%, rgba(236, 72, 153, 0.06) 0%, transparent 70%);
+  }
+
+  .glow-contact {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 40%, rgba(6, 182, 212, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(124, 58, 237, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 70%);
+  }
+
+  ::selection {
+    background-color: rgba(124, 58, 237, 0.4);
+    color: white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(124, 58, 237, 0.6);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-20 md:py-28;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-glass-strong hover:shadow-glow hover:border-primary-500/30;
+  }
+
+  .btn-primary {
+    @apply relative px-8 py-3 rounded-xl font-heading font-semibold text-white
+           bg-gradient-to-r from-primary-600 via-accent-500 to-highlight-500
+           bg-[length:200%_200%] animate-gradient-shift
+           shadow-glow hover:shadow-lg hover:scale-105
+           transition-transform duration-300;
+  }
+
+  .btn-outline {
+    @apply px-8 py-3 rounded-xl font-heading font-semibold
+           border border-glass-border hover:border-primary-400
+           glass hover:bg-primary-600/20
+           transition-all duration-300 hover:shadow-glow;
+    color: var(--fg-primary);
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-heading font-bold gradient-text mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg font-body max-w-2xl;
+    color: var(--fg-muted);
+  }
+
+  .neon-line {
+    @apply h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
