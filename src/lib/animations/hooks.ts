@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { useInView, useAnimation, type AnimationControls } from 'framer-motion';
+import { useInView, useAnimation } from 'framer-motion';
 import { ANIMATION_CONFIG } from './config';
 
 export const useScrollReveal = (threshold = 0.3) => {
@@ -55,7 +55,7 @@ export const useParallax = (speed = 0.5) => {
 export const useStaggerAnimation = (
   _itemCount: number,
   staggerDelay = ANIMATION_CONFIG.delay.stagger
-): { controls: AnimationControls; getDelay: (index: number) => number } => {
+  ): { controls: ReturnType<typeof useAnimation>; getDelay: (index: number) => number } => {
   const controls = useAnimation();
 
   const getDelay = useCallback(

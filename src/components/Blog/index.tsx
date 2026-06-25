@@ -15,8 +15,7 @@ function formatDate(dateStr: string): string {
 }
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-
+  const [posts] = useState<BlogPost[]>([]);
   
 
   if (posts.length === 0) return null;

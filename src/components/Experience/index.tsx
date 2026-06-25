@@ -86,7 +86,7 @@ function TimelineAnimated({ children }: { children: React.ReactNode }) {
 }
 
 export default function Experience() {
-  const [experience, setExperience] = useState<ExperienceType[]>([]);
+  const [experience] = useState<ExperienceType[]>([]);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const { ref, controls } = useScrollReveal();
   const sectionRef = useRef<HTMLElement>(null);
